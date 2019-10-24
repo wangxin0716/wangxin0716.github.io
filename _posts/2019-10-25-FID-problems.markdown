@@ -36,12 +36,7 @@ cov = [[1, 0.0], [0.0, 1]]
 ```
 
 
-
-| <img src="/Users/wangxin/PycharmProjects/sinkhorn/scatter_A.png" style="zoom:16%;" /> | <img src="/Users/wangxin/PycharmProjects/sinkhorn/scatter_b.png" style="zoom:16%;" /> | <img src="/Users/wangxin/PycharmProjects/sinkhorn/scatter_C.png" style="zoom:16%;" /> |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                                              |                                                              |                                                              |
-
-
+![]({{ '/images/fid_dists.png' | absolute_url }})
 
 If we try to capture these three *different* distributions with one single $2d$ Gaussian, they all have the same $\mu, \Sigma$:
 
