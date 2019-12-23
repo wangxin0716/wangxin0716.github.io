@@ -1,9 +1,8 @@
 ---
 layout: post
 mathjax: true
-title:  "FID problems"
+title:  Problem of Frechet Inception Distance(FID) score and Alternative
 ---
-# Problem of Frechet Inception Distance(FID) score for evaluation of GANs
 
 Frechet Inception Distance (FID) score is measure for the quality of GAN's generated samples. Given a set of generated samples and a set of real images, we first extract the 2048-dimensional activations from the pool3 layer of [Inception-v3](https://tfhub.dev/google/imagenet/inception_v3/classification/4) model; Then use a multi-variate Gaussian distribution to model both sets of activations. Denote $\mu_g, \Sigma_g$ and $\mu_r, \Sigma_r$ are the meas and covariances of generated images and real images. FID is calculated as:
 

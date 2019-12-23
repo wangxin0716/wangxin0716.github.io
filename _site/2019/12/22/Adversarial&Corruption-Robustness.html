@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Summary of “Adversarial Examples Are a Natural Consequence of Test Error in Noise” | Wang Xin’s Site</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Summary of “Adversarial Examples Are a Natural Consequence of Test Error in Noise”" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Adversarial examples pose a serious threat to machine learning models. However, they are not the only “illegal inputs” that pose a threat. Another type of inputs images with natural and common corruptions, e.g. additive Gaussian noises." />
+<meta property="og:description" content="Adversarial examples pose a serious threat to machine learning models. However, they are not the only “illegal inputs” that pose a threat. Another type of inputs images with natural and common corruptions, e.g. additive Gaussian noises." />
+<link rel="canonical" href="http://localhost:4000/2019/12/22/Adversarial&Corruption-Robustness.html" />
+<meta property="og:url" content="http://localhost:4000/2019/12/22/Adversarial&Corruption-Robustness.html" />
+<meta property="og:site_name" content="Wang Xin’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-22T00:00:00+08:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Summary of “Adversarial Examples Are a Natural Consequence of Test Error in Noise”","dateModified":"2019-12-22T00:00:00+08:00","datePublished":"2019-12-22T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/12/22/Adversarial&Corruption-Robustness.html"},"url":"http://localhost:4000/2019/12/22/Adversarial&Corruption-Robustness.html","description":"Adversarial examples pose a serious threat to machine learning models. However, they are not the only “illegal inputs” that pose a threat. Another type of inputs images with natural and common corruptions, e.g. additive Gaussian noises.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Wang Xin's Site" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Wang Xin&#39;s Site</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Summary of &quot;Adversarial Examples Are a Natural Consequence of Test Error in Noise&quot;</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-12-22T00:00:00+08:00" itemprop="datePublished">Dec 22, 2019
+      </time></p>
+	
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Adversarial examples pose a serious threat to machine learning models. However, they are not the only “illegal inputs” that pose a threat. Another type of inputs images with natural and common corruptions, e.g. additive Gaussian noises.</p>
+
+<p>So far, the researchers seem to work seperately, and keep them two lines of research. This paper, titled
+ <a href="https://arxiv.org/abs/1901.10513">Adversarial Examples Are a Natural Consequence of Test Error in Noise[1]</a>
+  establishes the connection between these two kinds of robustness: adversarial robustness and corruption robustness.</p>
+
+<h2 id="adversarial-and-corruption-robustness">Adversarial and Corruption Robustness</h2>
+
+<p>Both of them are defined as functions of <em>error set</em> of a statistical classifier. We  denote $E$ the error set, which is the set of points in the input space on which the classifier makes incorrect predictions.</p>
+
+<h3 id="adversarial-robustness">Adversarial Robustness</h3>
+
+<p>Let p represents the clean image distribution, and $d(x, E)$ denote the distance from $x$ to the nearest point in $E$. Then adversarial robustness $\mathcal{P}_{x\sim p}[d(x, E) &lt; \epsilon]$, the probability that some random sample from $p$ is not within distance $\epsilon$ of any point in the error set $E$.</p>
+
+<h3 id="corruption-robustness">Corruption Robustness</h3>
+
+<p>Let $q$ represent the corrupted image distribution. Corruption robustness is $\mathcal{P}_{x\sim q}[x \notin E ]$.</p>
+
+<h2 id="adversarial-robustness-and-gaussian-noise-corruption-robustness-are-highly-correlated">Adversarial Robustness and Gaussian Noise Corruption Robustness are highly correlated</h2>
+
+<p>One big take-away is while adversarial training performs better, Gaussian data augmentation does improve adversarial robustness. And in the oppsite direction, adversarial training  helps model against noise corruptions. One thing to note is Gaussian noise is just one of the many corruptions in ImageNet-C dataset (15 in total).</p>
+
+<p>The authors suggest that researchers should take adversarial robustness and corruption robustness into considertaion at the same time. Reasons are:</p>
+
+<ul>
+  <li>Corruptions may expose failure modes of a model that we might miss. Adversatial training improves adversarial robustness, but degrades performance on the fog and contrast corruptions.</li>
+  <li>Measuring corruption robustness is significantly easier than measuring adversarial robustness. Computing adversarial robustness perfectly requires solving an NP-hard problem for all points in the test set. That’s possibly why hundreds of adversarial defense papers published are successfully fooled later. Since correctly evaluate and report adversarial robustness is hard.</li>
+  <li>Failed adversarial defense strategies also fail to improve robustness against Gausssian noise. So the claimed $L_p$ adversarial robustness improvement doesn’t implies robustness of distribution shift due to various corruptions.</li>
+</ul>
+
+<p>[1] Adversarial examples are a natural consequence of test error in noise, Ford, Nic and Gilmer, Justin and Carlini, Nicolas and Cubuk, Dogus, ICML 2019</p>
+
+  </div><a class="u-url" href="/2019/12/22/Adversarial&Corruption-Robustness.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Wang Xin&#39;s Site</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Wang Xin&#39;s Site</li><li><a class="u-email" href="mailto:xwang@cs.hku.hk">xwang@cs.hku.hk</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/wangxin0716"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">wangxin0716</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is my personal site with some of my notes and posts about my research.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

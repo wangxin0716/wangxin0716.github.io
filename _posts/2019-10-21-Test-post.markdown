@@ -1,10 +1,8 @@
 ---
 layout: post
 mathjax: true
-title: "Deep Infomax"
+title: "Deep Infomax: Unsupervised Representation Learning by Maximizing Mutual Information "
 ---
-
-# Representation Learning with Deep Infomax
 
 Deep Infomax is an unsupervised representation learning framework which maximize
 the mutual information(MI) between the inputs and outputs of an encoder.
