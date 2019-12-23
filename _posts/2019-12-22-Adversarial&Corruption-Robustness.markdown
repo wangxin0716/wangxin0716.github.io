@@ -35,4 +35,7 @@ The authors suggest that researchers should take adversarial robustness and corr
 * Measuring corruption robustness is significantly easier than measuring adversarial robustness. Computing adversarial robustness perfectly requires solving an NP-hard problem for all points in the test set. That's possibly why hundreds of adversarial defense papers published are successfully fooled later. Since correctly evaluate and report adversarial robustness is hard.
 * Failed adversarial defense strategies also fail to improve robustness against Gausssian noise. So the claimed $L_p$ adversarial robustness improvement might not imply robustness of distribution shift due to various corruptions.
 
+
+## Reference
+
 [1] Adversarial examples are a natural consequence of test error in noise, Ford, Nic and Gilmer, Justin and Carlini, Nicolas and Cubuk, Dogus, ICML 2019
