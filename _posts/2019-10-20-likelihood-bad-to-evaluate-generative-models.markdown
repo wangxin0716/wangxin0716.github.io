@@ -6,7 +6,7 @@ title: "Likelihood is not a Good Measure to Evaluate Generative Models"
 
 ## Generative Models via Maximum Likelihood Estimation (MLE)
 
-Consider we have a set of examples $\{x_i\}_{i=1}^{n}$ drawn independently from the true but unknown data distribution
+Consider we have a set of examples $ \{x_i\}_{i=1}^{n} $ drawn independently from the true but unknown data distribution
  $p_{data}(x)$. We have a model $p_{\theta}(x)$ parameterized with $ \theta $,
   and want to approximate $p_\theta(x)$ to $p_{data}(x)$.
     We could minimize the KL-divergence $D_{KL}(p_{data}(x)|| p_\theta(x))$, which gives:
@@ -24,7 +24,7 @@ where $\mathbb{H}_{p_{data}(x)}$ is the data entropy independent of parameters $
   So minimizing $D_{KL}(p_{data}|| p_\theta)$ is equivalent to minimizing 
    $-\mathbb{E}_{p_{data}(x)} [\log p_\theta(x)]$, i.e. the cross entropy $\mathbb{H}(p_{data}, p_\theta)$.  
 
-In practice, we maximize the emprical log-likelihood over $\{x_i\}_{i=1}^n$, i.e. minimizing the average negative log-likelihood:
+In practice, we maximize the emprical log-likelihood over $ \{x_i\}_{i=1}^n $, i.e. minimizing the average negative log-likelihood:
 
 $$
 \begin{equation}
