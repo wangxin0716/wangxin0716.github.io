@@ -27,7 +27,9 @@ where $\mathbb{H}_{p_{data}(x)}$ is the data entropy independent of parameters $
 In practice, we maximize the emprical log-likelihood over $\{x_i\}_{i=1}^n$, i.e. minimizing the average negative log-likelihood:
 
 $$
+\begin{equation}
 \mathbb{E}_{p_{data}(x)} [\log p_\theta(x)] = \frac{1}{n} \sum_{i=1}^n \log p_\theta(x_i)
+\end{equation}
 $$
 
 Among the deep generative models which usually work on complex high-dimensional data, e.g. natural images, flow-based generative models, *flows* in short, ar e the ones that exactly do MLE.  A flow is usually parameterized by a sequence of specialized neural network layers; each layer performs bijective trasnform on the input variables. The log-likelihood of a sample is evaluated by *change of variables* theorem. See [this post](https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html#change-of-variable-theorem) for more details of various types of flows.
