@@ -6,9 +6,9 @@ title: "Likelihood is not a Good Measure to Evaluate Generative Models"
 
 ## Generative Models via Maximum Likelihood Estimation (MLE)
 
-Consider we have a set of examples $ \begin{equation}\{ x_i \}_{i=1}^{n} \end{equation}$ drawn independently from the true but unknown data distribution
- $p_{data}(x)$. We have a model $p_{\theta}(x)$ parameterized with $ \theta $,
-  and want to approximate $p_\theta(x)$ to $p_{data}(x)$.
+Consider we have a set of examples `$\{ x_i \}_{i=1}^{n}$` drawn independently from the true but unknown data distribution
+ `$p_{data}(x)$`. We have a model `$p_{\theta}(x)$` parameterized with `$ \theta $`,
+  and want to approximate `$p_\theta(x)$ to $p_{data}(x)$`.
     We could minimize the KL-divergence $D_{KL}(p_{data}(x)|| p_\theta(x))$, which gives:
 $$
 \begin{equation}
