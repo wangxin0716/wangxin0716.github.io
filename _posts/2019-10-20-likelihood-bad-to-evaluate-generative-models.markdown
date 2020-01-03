@@ -6,8 +6,11 @@ title: "Likelihood is not a Good Measure to Evaluate Generative Models"
 
 ## Generative Models via Maximum Likelihood Estimation (MLE)
 
-Consider we have a set of examples $\{x_i\}_{i=1}^{n}$ drawn independently from the true but unknown data distribution
- , which gives:
+Consider we have a set of examples $\\{x_i\\}\_{i=1}^{n}$ drawn independently from the true but unknown data distribution
+$p\_{data}(x)$. We have a model $p\_{\theta}(x)$ parameterized with $\theta$,
+ and want to approximate $p\_\theta(x)$ to $p\_{data}(x)$. 
+  We could minimize the KL-divergence  $D_{KL}(p_{data}(x)|| p_\theta(x))$, which gives:
+ 
 $$
 \begin{equation}
 \begin{split}
@@ -18,11 +21,11 @@ D_{KL}(p_{data}(x)|| p_\theta(x)) &= \int p_{data}(x) \log \frac{p_{data}(x)}{p_
 \end{equation}
 $$
 
-where $\mathbb{H}_{p_{data}(x)}$ is the data entropy independent of parameters $\theta$.
+where $\mathbb{H}\_{p\_{data}(x)}$ is the data entropy independent of parameters $\theta$.
   So minimizing $D_{KL}(p_{data}|| p_\theta)$ is equivalent to minimizing 
-   $-\mathbb{E}_{p_{data}(x)} [\log p_\theta(x)]$, i.e. the cross entropy $\mathbb{H}(p_{data}, p_\theta)$.  
+   $-\mathbb{E}\_{p\_{data}(x)} [\log p\_\theta(x)]$, i.e. the cross entropy $\mathbb{H}(p\_{data}, p_\theta)$.  
 
-In practice, we maximize the emprical log-likelihood over $ \{x_i\}_{i=1}^n $, i.e. minimizing the average negative log-likelihood:
+In practice, we maximize the emprical log-likelihood over $ \\{x_i\\}_{i=1}^n $, i.e. minimizing the average negative log-likelihood:
 
 $$
 \begin{equation}
@@ -34,7 +37,7 @@ Among the deep generative models which usually work on complex high-dimensional 
 
 
 
-## Likelihood can be *independent* of the quality of samples
+## Likelihood $\neq$ quality of samples
 
 A very simple but important argument for this part is:
 
@@ -42,7 +45,7 @@ A very simple but important argument for this part is:
 
 This counter-intuitive conclusion is first made clear in (this paper)[1] and tells that likelihood and samples' quality (or plausibility) are largely *independent*. More specifically, For a generative model that reports good likelihood on test set, it doesn't imply good quality of generated samples. And further, being able to generate plausible images doesn't take a model that must have competitive average likelihood. 
 
-### Plausible Samples & Poor Likelihood
+#### Plausible Samples & Poor Likelihood
 
 Consider the following mixture of gaussians as a generative model:
 
@@ -52,7 +55,7 @@ $$
 
 where $\{x_i\}_{i=1}^n$ are means of either training samples or other plausible samples. We  keep the variance $\sigma^2$ very small.  We can safely construct a sample $\tilde{x}=x_i + \epsilon$, where $\epsilon$ is an imperceptable noise (Gaussian or non-Gaussian). Then sample $\tilde{x}$ could be fairly plausible with poor likelihood.
 
-### Good likelihood & Poor Samples
+#### Good likelihood & Poor Samples
 Say $p$ is a perfect density model for data $x$ achieving arbitrarily well log-likelihood, while $q$ is a bad model, e.g. Gaussian noise.
 The following mixture model:
 
@@ -62,8 +65,9 @@ $$
 
 So $99\%$ of the time, a sample from it would be plausibly poor.  However, the log-likelihood hardly change if dimension 
 of data $d$ is large:
+
 $$
-\log (0.01 p(x) + 0.99 q(x)) \geq \log p(x) - \log 100
+\log (0.01 p(x) + 0.99 q(x)) \geq \log p(x) - \log 100.
 $$
 
 $\log p(x)$ can be infinitely large proportionally to $d$.  While constant $\log 100 = 4.61$ is negligible, so that it 
