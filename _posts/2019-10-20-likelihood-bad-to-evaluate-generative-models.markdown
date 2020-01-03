@@ -6,15 +6,13 @@ title: "Likelihood is not a Good Measure to Evaluate Generative Models"
 
 ## Generative Models via Maximum Likelihood Estimation (MLE)
 
-Consider we have a set of examples `$\{ x_i \}_{i=1}^{n}$` drawn independently from the true but unknown data distribution
- `$p_{data}(x)$`. We have a model `$p_{\theta}(x)$` parameterized with `$ \theta $`,
-  and want to approximate `$p_\theta(x)$ to $p_{data}(x)$`.
-    We could minimize the KL-divergence $D_{KL}(p_{data}(x)|| p_\theta(x))$, which gives:
+Consider we have a set of examples $\{x_i\}_{i=1}^{n}$ drawn independently from the true but unknown data distribution
+ , which gives:
 $$
 \begin{equation}
 \begin{split}
-D_{KL}(p_{data}(x)|| p_\theta(x)) &= \int p_{data}(x) \log \frac{p_{data}(x)}{p_\theta(x)} dx
-&= -\mathbb{H}_{p_{data}(x)} - \mathbb{E}_{p_{data}(x)} [\log p_\theta(x)]
+D_{KL}(p_{data}(x)|| p_\theta(x)) &= \int p_{data}(x) \log \frac{p_{data}(x)}{p_\theta(x)} dx\\
+&= -\mathbb{H}_{p_{data}(x)} - \mathbb{E}_{p_{data}(x)} [\log p_\theta(x)]\\
 &= \text{const} -  \mathbb{E}_{p_{data}(x)} [\log p_\theta(x)]
 \end{split}
 \end{equation}
